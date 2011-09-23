@@ -1,0 +1,21 @@
+Dsdata_NoState ist der offizielle Nachfolger von Mxperts_NoRegion.
+
+Da ich weder Mxperts Mails empfange, noch an den alten Member Account komme 
+(Logindaten wurden abgeändert), wird die Extension nun über meinen Account veröffentlicht
+um weiterhin Versionsupdates bereitstellen zu können, ich war / bin ja ohnehin der verantwortliche 
+Entwickler hinter NoRegion gewesen, von daher. ;)
+
+Für Mxperts_NoRegion wird es definitiv kein Update mehr geben!
+
+Unterschiede ab Dsdata_NoState 1.1.4:
+- Wechsel des Codepools von local nach community
+- Wechsel des Namespaces Mxperts / Dsdata
+- Kompatiblitäts Patch für aktuelle Marked Ready Versionen,
+  die zusammen mit NoRegion / NoState aufgesetzt wurden.
+
+  
+Wichtig: 
+Bevor sie diese Extension installieren, deinstallieren Sie bitte Mxperts_NoRegion,
+da es ansonsten zu Kompatiblitätsproblemen kommen kann!
+
+Daniel Sasse
