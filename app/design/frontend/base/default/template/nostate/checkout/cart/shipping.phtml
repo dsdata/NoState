@@ -45,11 +45,11 @@
                 <button type="button" title="<?php echo $this->__('Get a Quote') ?>" onclick="coShippingMethodForm.submit()" class="button"><span><span><?php echo $this->__('Get a Quote') ?></span></span></button>
             </div>
         </form>
-        <script type="text/javascript">
+        <!--<script type="text/javascript">
         //<![CDATA[
-            new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>);
+            new RegionUpdater('country', 'region', 'region_id', <?php //echo $this->helper('directory')->getRegionJson() ?>);
         //]]>
-        </script>
+        </script>-->
 
         <?php if (($_shippingRateGroups = $this->getEstimateRates())): ?>
         <form id="co-shipping-method-form" action="<?php echo $this->getUrl('checkout/cart/estimateUpdatePost') ?>">
