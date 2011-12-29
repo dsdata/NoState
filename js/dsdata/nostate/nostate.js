@@ -29,7 +29,7 @@
  * @package Dsdata_NoState
  * @authors Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>
  * @developer Daniel Sasse <info@golox-web.de, http://www.golox-web.de/> 
- * @version 1.1.6
+ * @version 1.1.7
  * @copyright Golox-Web.de, Daniel Sasse
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)  
  */
@@ -37,6 +37,8 @@
 document.observe('dom:loaded', function() {
     /* Check the radiobutton "shipping to this adress" */
     $('billing:use_for_shipping_yes').writeAttribute('checked', true);
+	/* set a empty default value for State if NoState is enabled */
+	//$('billing:region_id').setAttribute('defaultValue', hallo);
     
     /* Change the position from zip and city - fields */    
     changeElements($('billing:postcode'), $('billing:city'));

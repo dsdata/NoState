@@ -12,10 +12,18 @@ Unterschiede ab Dsdata_NoState 1.1.4:
 - Wechsel des Namespaces Mxperts / Dsdata
 - Kompatiblitäts Patch für aktuelle Marked Ready Versionen,
   die zusammen mit NoRegion / NoState aufgesetzt wurden.
+  
+Version 1.1.5 und 1.1.6
+- Wechsel des Themeverzeichnisses von default/default nach base/default  
+- JavaScript Fehler auf Warenkorb Seite "Region is not defined"
+
+Version 1.1.7
+- Kleinere Codeveränderungen in den Templates
+- "Header already sent" Bug behoben
 
   
 Wichtig: 
 Bevor sie diese Extension installieren, deinstallieren Sie bitte Mxperts_NoRegion,
-da es ansonsten zu Kompatiblitätsproblemen kommen kann!
+sofern vorhanden. Da es ansonsten zu Kompatiblitätsproblemen kommen kann!
 
 Daniel Sasse
