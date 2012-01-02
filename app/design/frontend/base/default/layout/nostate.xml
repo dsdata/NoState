@@ -5,7 +5,7 @@
  * @package Dsdata_NoState
  * @authors Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>
  * @developer Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>  
- * @version 1.1.6
+ * @version 1.1.8
  * @copyright Golox-Web.de, Daniel Sasse
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)  
  */
@@ -16,9 +16,10 @@
 Checkout - No availability for showing and editing State / Province
 -->	
 	<checkout_multishipping_customer_address>
-		<remove name="customer_address_edit"/><!--important for Magento 1.3.x (Double Templates)-->
+		<!--<remove name="customer_address_edit"/>--><!--important for Magento 1.3.x (Double Templates)-->
         <reference name="content">
-			<block type="customer/address_edit" name="dsdata_customer_address_edit" as="billing" template="customer/address/edit.phtml">
+		<action method="unsetChildren" />
+			<block type="customer/address_edit" name="customer_address_edit" as="billing" template="customer/address/edit.phtml">
 				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
 					<template>nostate/customer/address/edit.phtml</template> 
 				</action>
@@ -29,7 +30,7 @@ Checkout - No availability for showing and editing State / Province
 <!-- Warenkorb, kein Bundesland in der "Versandkosten geschaetzt Box" -->
 	
 	<checkout_cart_index translate="label">
-		<remove name="checkout.cart"/><!--important for Magento 1.3.x (Double Templates)-->
+		<!--<remove name="checkout.cart"/>--><!--important for Magento 1.3.x (Double Templates)-->
         <label>Shopping Cart</label>
         <remove name="right"/>
         <remove name="left"/>
@@ -38,7 +39,8 @@ Checkout - No availability for showing and editing State / Province
             <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="content">
-            <block type="checkout/cart" name="nostate.checkout.cart"><!--modified name-->
+		<action method="unsetChildren" />
+            <block type="checkout/cart" name="checkout.cart"><!--modified name-->
                 <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
                 <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
                 <action method="chooseTemplate"/>
@@ -83,15 +85,17 @@ Checkout - No availability for showing and editing State / Province
     </checkout_cart_index>
 	
 	 <checkout_onepage_index>
-		<remove name="checkout.onepage"/>
+		<!--<remove name="checkout.onepage"/>-->
+		<!--<action method="unsetChildren" />-->
 		<reference name="head">
 		<action method="addJs" ifconfig="customer/nostate/enabled" ifvalue="1">
 			<script>dsdata/nostate/nostate.js</script>
 		</action>
         </reference>
         <reference name="content">
-			<action method="unsetChild"><name>checkout.onepage.review</name></action><!--Important for compatiblity to the Marked Ready Germany Extension -->
-            <block type="checkout/onepage" name="nostate.checkout.onepage" template="checkout/onepage.phtml">
+			<!--<action method="unsetChild"><name>checkout.onepage.review</name></action>--><!--Important for compatiblity to the Marked Ready Germany Extension -->
+            <action method="unsetChildren" />
+			<block type="checkout/onepage" name="checkout.onepage" template="checkout/onepage.phtml">
                 <block type="checkout/onepage_login" name="checkout.onepage.login" as="login" template="checkout/onepage/login.phtml">
 					<block type="page/html_wrapper" name="checkout.onepage.login.before" as="login_before">
                         <action method="setMayBeInvisible"><value>1</value></action><!-- since Magento 1.4.x -->
@@ -130,12 +134,12 @@ Customer - No availability of showing and editing State / Province
 -->
     <!-- Register Form-->
 	<customer_account_create translate="label">
-	<remove name="customer_form_register"/><!--important for Magento 1.3.x (Double Templates)-->
+	<!--<remove name="customer_form_register"/>--><!--important for Magento 1.3.x (Double Templates)-->
 	<remove name="recaptcha_form_register"/><!--important: compatiblity to fontis recaptcha extension, remove register page from this extension -->
         <reference name="content">
-		
+			<action method="unsetChildren" />
 			<!--Modified Block - No Region on Registration Page-->
-			<block type="customer/form_register" name="nostate_customer_form_register" template="customer/form/register.phtml">
+			<block type="customer/form_register" name="customer_form_register" template="customer/form/register.phtml">
 				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
 					<template>nostate/customer/form/register.phtml</template> 
 				</action>
@@ -168,9 +172,11 @@ Customer - No availability of showing and editing State / Province
 	<!-- Edit Address Form-->
 	
 	<customer_address_form>
-		<remove name="customer_address_edit"/><!--important for Magento 1.3.x (Double Templates)-->
+		<!--<remove name="customer_address_edit"/>--><!--important for Magento 1.3.x (Double Templates)-->
         <reference name="content">
-			<block type="customer/address_edit" name="nostate_customer_address_edit" as="billing" template="customer/address/edit.phtml">
+			<action method="unsetChildren" />
+
+		<block type="customer/address_edit" name="customer_address_edit" as="billing" template="customer/address/edit.phtml">
 				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
 					<template>nostate/customer/address/edit.phtml</template> 
 				</action>
