@@ -25,7 +25,12 @@ Version 1.1.8
 - Frontend - nostate.xml: Wechsel von <remove name="..."/>
   auf <action method="unsetChildren" />, wegen besserer Theme und
   Extensionkompatiblität - Danke an Tobi von http://www.webguys.de/
-
+  
+Version 1.1.9
+- Frontend - nostate.xml: Refactoring des Layouts. 
+  Weniger Code und bessere Kompatibilität (Themes + andere Extensions).
+  Verbesserte Kompatibilität zu Magento 1.6.x - Danke an Tobi von 
+  http://www.webguys.de/  
 
   
 Wichtig: 

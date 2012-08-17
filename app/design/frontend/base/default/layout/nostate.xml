@@ -5,183 +5,73 @@
  * @package Dsdata_NoState
  * @authors Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>
  * @developer Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>  
- * @version 1.1.8
+ * @version 1.1.9
  * @copyright Golox-Web.de, Daniel Sasse
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)  
  */
  -->
 <layout version="0.1.0">
 
-<!--
-Checkout - No availability for showing and editing State / Province
--->	
+	<!-- Multishipping Checkout, kein Bundesland in den Feldern / Umordnung der Feld Reihenfolge -->	
+	
 	<checkout_multishipping_customer_address>
-		<!--<remove name="customer_address_edit"/>--><!--important for Magento 1.3.x (Double Templates)-->
-        <reference name="content">
-		<action method="unsetChildren" />
-			<block type="customer/address_edit" name="customer_address_edit" as="billing" template="customer/address/edit.phtml">
-				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
-					<template>nostate/customer/address/edit.phtml</template> 
-				</action>
-			</block>
-        </reference>
+		<reference name="customer_address_edit">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/customer/address/edit.phtml</template>
+			</action>
+		</reference>
     </checkout_multishipping_customer_address>
 
-<!-- Warenkorb, kein Bundesland in der "Versandkosten geschaetzt Box" -->
+	<!-- Warenkorb, kein Bundesland in der "Versandkosten geschaetzt Box" -->
 	
-	<checkout_cart_index translate="label">
-		<!--<remove name="checkout.cart"/>--><!--important for Magento 1.3.x (Double Templates)-->
-        <label>Shopping Cart</label>
-        <remove name="right"/>
-        <remove name="left"/>
-        <!-- Mage_Checkout -->
-        <reference name="root">
-            <action method="setTemplate"><template>page/1column.phtml</template></action>
-        </reference>
-        <reference name="content">
-		<action method="unsetChildren" />
-            <block type="checkout/cart" name="checkout.cart"><!--modified name-->
-                <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
-                <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
-                <action method="chooseTemplate"/>
-                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/item/default.phtml</template></action>
-                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/item/default.phtml</template></action>
-                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/item/default.phtml</template></action>
-
-                <block type="core/text_list" name="checkout.cart.top_methods" as="top_methods" translate="label">
-                    <label>Payment Methods Before Checkout Button</label>
-                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
-                </block>
-
-                <block type="page/html_wrapper" name="checkout.cart.form.before" as="form_before" translate="label">
-                    <label>Shopping Cart Form Before</label>
-                </block>
-
-                <block type="core/text_list" name="checkout.cart.methods" as="methods" translate="label">
-                    <label>Payment Methods After Checkout Button</label>
-                    <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
-                    <block type="checkout/multishipping_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
-                </block>
-
-                <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="checkout/cart/coupon.phtml"/>
-                <!--Modified shipping file to hide state/province-->
-				
-				
-				<block type="checkout/cart_shipping" name="checkout.cart.shipping" as="shipping" template="checkout/cart/shipping.phtml">
-				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
-					<template>nostate/checkout/cart/shipping.phtml</template> 
-				</action>
-				</block>
-				
-				<!--<block type="checkout/cart_shipping" name="checkout.cart.shipping" as="shipping" template="checkout/cart/shipping.phtml"/>-->
-                <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>
-
-                <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
-            </block>
-        </reference>
-        <block type="core/text_list" name="additional.product.info" translate="label">
-            <label>Additional Product Info</label>
-        </block>
+	<checkout_cart_index translate="label">	
+		<reference name="checkout.cart.shipping">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/checkout/cart/shipping.phtml</template>
+			</action>
+		</reference>
     </checkout_cart_index>
+
+	<!-- OnePage Checkout, kein Bundesland in den Feldern / Umordnung der Feld Reihenfolge -->	
 	
-	 <checkout_onepage_index>
-		<!--<remove name="checkout.onepage"/>-->
-		<!--<action method="unsetChildren" />-->
+	<checkout_onepage_index>
+	 
 		<reference name="head">
-		<action method="addJs" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<action method="addJs" ifconfig="customer/nostate/enabled" ifvalue="1">
 			<script>dsdata/nostate/nostate.js</script>
-		</action>
-        </reference>
-        <reference name="content">
-			<!--<action method="unsetChild"><name>checkout.onepage.review</name></action>--><!--Important for compatiblity to the Marked Ready Germany Extension -->
-            <action method="unsetChildren" />
-			<block type="checkout/onepage" name="checkout.onepage" template="checkout/onepage.phtml">
-                <block type="checkout/onepage_login" name="checkout.onepage.login" as="login" template="checkout/onepage/login.phtml">
-					<block type="page/html_wrapper" name="checkout.onepage.login.before" as="login_before">
-                        <action method="setMayBeInvisible"><value>1</value></action><!-- since Magento 1.4.x -->
-                    </block>
-				</block>
-				
-                <block type="checkout/onepage_billing" name="checkout.onepage.billing" as="billing" template="checkout/onepage/billing.phtml">
-				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
-					<template>nostate/checkout/onepage/billing.phtml</template> 
-				</action>
-				</block>
-				
-				<block type="checkout/onepage_shipping" name="checkout.onepage.shipping" as="shipping" template="checkout/onepage/shipping.phtml">
-				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
-					<template>nostate/checkout/onepage/shipping.phtml</template> 
-				</action>
-				</block>
-				
-                <block type="checkout/onepage_shipping_method" name="checkout.onepage.shipping_method" as="shipping_method" template="checkout/onepage/shipping_method.phtml">
-                    <block type="checkout/onepage_shipping_method_available" name="checkout.onepage.shipping_method.available" as="available" template="checkout/onepage/shipping_method/available.phtml"/>
-                    <block type="checkout/onepage_shipping_method_additional" name="checkout.onepage.shipping_method.additional" as="additional" template="checkout/onepage/shipping_method/additional.phtml"/>
-                </block> 
-                <block type="checkout/onepage_payment" name="checkout.onepage.payment" as="payment" template="checkout/onepage/payment.phtml">
-                    <block type="checkout/onepage_payment_methods" name="checkout.payment.methods" as="methods" template="checkout/onepage/payment/methods.phtml">
-                        <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
-                    </block>
-                </block>
-                <block type="checkout/onepage_review" name="checkout.onepage.review" as="review" template="checkout/onepage/review.phtml">
-				 <block type="checkout/agreements" name="checkout.onepage.agreements" as="agreements" template="checkout/onepage/agreements.phtml"/>
-                </block>
-            </block>
-        </reference>
+			</action>
+		</reference>				
+		<reference name="checkout.onepage.billing">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/checkout/onepage/billing.phtml</template>
+			</action>
+		</reference>
+
+		<reference name="checkout.onepage.shipping">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/checkout/onepage/shipping.phtml</template>
+			</action>
+		</reference>
+		
     </checkout_onepage_index>
-<!--
-Customer - No availability of showing and editing State / Province
--->
-    <!-- Register Form-->
+	<!-- Kundenbereich, kein Bundesland in den Feldern / Umordnung der Feld Reihenfolge -->
+    
 	<customer_account_create translate="label">
-	<!--<remove name="customer_form_register"/>--><!--important for Magento 1.3.x (Double Templates)-->
-	<remove name="recaptcha_form_register"/><!--important: compatiblity to fontis recaptcha extension, remove register page from this extension -->
-        <reference name="content">
-			<action method="unsetChildren" />
-			<!--Modified Block - No Region on Registration Page-->
-			<block type="customer/form_register" name="customer_form_register" template="customer/form/register.phtml">
-				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
-					<template>nostate/customer/form/register.phtml</template> 
-				</action>
-				<!-- If Fontis Recaptcha is installed and enabled, display recaptcha box -->
-				
-				
-				<block type="core/template" name="recaptcha.box" as="recaptcha_box" template="fontis/recaptcha/recaptcha.phtml">
-					<action method="setTemplate" ifconfig="fontis_recaptcha/recaptcha/customer" ifvalue="1">
-					<template>fontis/recaptcha/recaptcha.phtml</template> 
-				</action>
-				</block>
-				<!-- End recaptcha box -->
-				
-				<block type="page/html_wrapper" name="customer.form.register.fields.before" as="form_fields_before" translate="label">
-                    <label>Form Fields Before</label>
-                </block>
-			</block>
-			
-			<!--End modified block-->
-			
-			<!-- Original Block-->
-            <!--<block type="customer/form_register" name="customer_form_register" template="customer/form/register.phtml">
-				<block type="page/html_wrapper" name="customer.form.register.fields.before" as="form_fields_before" translate="label">
-                    <label>Form Fields Before</label>
-                </block>
-            </block>-->
-        </reference>
+		<reference name="customer_form_register">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/customer/form/register.phtml</template>
+			</action>
+		</reference>
     </customer_account_create>
 	
-	<!-- Edit Address Form-->
+	<!-- Adressbearbeitung -->
 	
 	<customer_address_form>
-		<!--<remove name="customer_address_edit"/>--><!--important for Magento 1.3.x (Double Templates)-->
-        <reference name="content">
-			<action method="unsetChildren" />
-
-		<block type="customer/address_edit" name="customer_address_edit" as="billing" template="customer/address/edit.phtml">
-				<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
-					<template>nostate/customer/address/edit.phtml</template> 
-				</action>
-			</block>
-        </reference>
+		<reference name="customer_address_edit">
+			<action method="setTemplate" ifconfig="customer/nostate/enabled" ifvalue="1">
+			<template>nostate/customer/address/edit.phtml</template>
+			</action>
+		</reference>
     </customer_address_form>	
 	
 </layout>	
