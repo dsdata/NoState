@@ -29,7 +29,7 @@
  * @package Dsdata_NoState
  * @authors Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>
  * @developer Daniel Sasse <info@golox-web.de, http://www.golox-web.de/> 
- * @version 1.1.9
+ * @version 1.2.1
  * @copyright Golox-Web.de, Daniel Sasse
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)  
  */
@@ -43,6 +43,8 @@ document.observe('dom:loaded', function() {
     /* Change the position from zip and city - fields */    
     changeElements($('billing:postcode'), $('billing:city'));
     changeElements($('shipping:postcode'), $('shipping:city'));
+	//$('region_id').removeClassName('required-entry');
+	//$('region_id').removeClassName('validate-select');
 });
 
 function changeElements(zipElement, cityElement) {

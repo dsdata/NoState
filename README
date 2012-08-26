@@ -31,6 +31,13 @@ Version 1.1.9
   Weniger Code und bessere Kompatibilität (Themes + andere Extensions).
   Verbesserte Kompatibilität zu Magento 1.6.x - Danke an Tobi von 
   http://www.webguys.de/  
+  
+Version 1.2.0
+- Not uploaded to github! 
+  
+Version 1.2.1
+- Bugfix Release - OnePage Checkout 
+- state fileds was visible in billing and shipping steps  
 
   
 Wichtig: 
