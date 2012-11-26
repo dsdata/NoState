@@ -1,0 +1,5 @@
+app/code/community/Dsdata/NoState app/code/community/Dsdata/NoState
+app/design/frontend/base/default/layout/nostate.xml app/design/frontend/default/default/layout/nostate.xml
+app/design/frontend/base/default/template/nostate app/design/frontend/default/default/template/nostate
+app/etc/modules/Dsdata_NoState.xml app/etc/modules/Dsdata_NoState.xml
+js/dsdata/nostate js/dsdata/nostate
