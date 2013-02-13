@@ -37,8 +37,11 @@ Version 1.2.0
   
 Version 1.2.1
 - Bugfix Release - OnePage Checkout 
-- state fileds was visible in billing and shipping steps  
+- state fields was visible in billing and shipping steps  
 
+Version 1.2.2
+- Bugfix PayPal Express 
+- Update Autor Informationen
   
 Wichtig: 
 Bevor sie diese Extension installieren, deinstallieren Sie bitte Mxperts_NoRegion,
