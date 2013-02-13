@@ -2,15 +2,14 @@
 /**
  * @category Dsdata
  * @package Dsdata_NoState
- * @authors Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>
- * @developer Daniel Sasse <info@golox-web.de, http://www.golox-web.de/>  
- * @version 1.2.1
- * @copyright Golox-Web.de, Daniel Sasse
+ * @authors Daniel Sasse <info@dsdata.de, http://www.dsdata.de.de/>
+ * @developer Daniel Sasse <info@dsdata.de, http://www.dsdata.de/>  
+ * @version 1.2.2
+ * @copyright dsdata.de, Daniel Sasse
  * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)  
  */
 ?>
 <?php
- 
 class Dsdata_NoState_Block_Customer_Grid extends Mage_Adminhtml_Block_Widget_Grid
 //Dont extend the class Mage_Adminhtml_Block_Customer_Grid because this class adding the missing / commented columns again into the Grid!
 {
