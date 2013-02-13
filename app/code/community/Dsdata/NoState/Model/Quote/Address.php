@@ -14,7 +14,6 @@ class Dsdata_NoState_Model_Quote_Address extends Mage_Sales_Model_Quote_Address
 {	
 	public function validate()
     {
-		return true;
         $errors = array();
         $helper = Mage::helper('customer');
         $this->implodeStreetAddress();
@@ -56,9 +55,9 @@ class Dsdata_NoState_Model_Quote_Address extends Mage_Sales_Model_Quote_Address
 //            $errors[] = $helper->__('Please enter state/province.');
 //        }
 
-        if (empty($errors)) {
-            return true;
-        }
+        if (empty($errors) || $this->getShouldIgnoreValidation()) {
+		return true;
+		} 
         return $errors;
     }
 }
