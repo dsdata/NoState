@@ -1,0 +1,5 @@
+{
+    "name": "dsdata/NoState",
+    "description": "Hide state/province from front- and backend",
+    "type": "magento-module"
+}
